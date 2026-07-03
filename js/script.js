@@ -1,15 +1,17 @@
-document.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("load", () => {
+    const preloader = document.getElementById("preloader");
 
-    console.log("Site loaded");
+    if (preloader) {
+        setTimeout(() => {
+            preloader.style.opacity = "0";
+            preloader.style.visibility = "hidden";
+            preloader.style.pointerEvents = "none";
 
-    // безопасные кнопки
-    const buttons = document.querySelectorAll(".btn-primary, .btn-secondary, .service-btn");
+            // 💥 ВАЖНО: полностью удаляем из DOM
+            setTimeout(() => {
+                preloader.remove();
+            }, 500);
 
-    buttons.forEach(btn => {
-        btn.addEventListener("click", () => {
-            btn.style.transform = "scale(0.97)";
-            setTimeout(() => btn.style.transform = "scale(1)", 150);
-        });
-    });
-
+        }, 600);
+    }
 });
